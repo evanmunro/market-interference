@@ -1,5 +1,5 @@
-using StatsPlots
-includet("binary_simulation.jl")
+using StatsPlots, Revise
+include("binary_simulation.jl")
 #coverage results printed here
 results = run_simulation(2500, 10000)
 #also can plot smoothed empirical distribution versus actual
