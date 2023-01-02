@@ -60,9 +60,14 @@ end
 function varianceDirect(Y, Z, W, ∂::Partials; p=0.5)
     a = (∂.yp1 - ∂.yp0)
     H = ∂.μzp
-    A = -1*p .* W.*a./H.*Z + ((1 - p)*a/H) .* (1 .- W).*Z
-    data = (W./p - (1 .-W)./(1 - p)).*(Y.+A)
-    return std(data)/sqrt(length(Y))
+    A = -1 .*a./H.*Z
+    #println("diff ", a)
+    #println("H: ", H)
+    #println("Cov", cov(Y, Z))
+    data = (W./p - (1 .-W)./(1 - p)).*(Y) .+ A
+    #println(std(A)/sqrt(length(Y)))
+    #println()
+    return std(data)/sqrt(length(Y)), std(data .- A)/sqrt(length(Y))
 end
 
 function estimate_τ(data::EqmData)
@@ -71,9 +76,9 @@ function estimate_τ(data::EqmData)
     τD = Δ.y
     #println((data.p*∂.yp1 + (1- data.p)*∂.yp0))
     τI = -1.0*(data.p*∂.yp1 + (1- data.p)*∂.yp0)*Δ.z/∂.μzp
-    σD = varianceDirect(data.Y, data.Z, data.W, ∂)
+    σD, σRCT = varianceDirect(data.Y, data.Z, data.W, ∂)
     σI = varianceIndirect(data.Y, data.Z, data.W, data.U, ∂, Δ)
-    return (τD = τD, σD = σD, τI = τI, σI = σI)
+    return (τD = τD, σD = σD, τI = τI, σI = σI, σRCT = σRCT)
 end
 
 function ivCOV(Y, X, Z)
@@ -84,11 +89,11 @@ end
 function varianceIndirect(Y, Z, W, U, ∂::Partials, Δ::DiffMeans; p = 0.5)
     dpstar = -1.0*Δ.z
     coefIV, covIV, int = ivCOV(Y, Z, U)
-    a = (∂.yp1 - ∂.yp0)
+    #a = (∂.yp1 - ∂.yp0)
+    b = (∂.dp1 - ∂.sp1) - (∂.dp0 - ∂.sp0)
     H = ∂.μzp
-    A = -1*p .* W.*a./H.*Z + ((1 - p)*a/H) .* (1 .- W).*Z
-    data = (W./p - (1 .-W)./(1 - p)).*(Z.+A)
-    covZ = var(data)/length(data)
+    B = (W./p - (1 .-W)./(1 - p)).*Z .- b/H.*Z
+    covZ = var(B)/length(B)
     #σ2 = dpstar*(covIV^2*dpstar) + coefIV^2*covZ
     #println("Cov direct:", sqrt(dpstar*(covIV^2*dpstar)))
     ehat = Y .- Z.* coefIV .- int
