@@ -1,43 +1,34 @@
-## Replication Code for Treatment Effects in Market Equilibrium Paper
+## Replication Code for Treatment Effects in Market Equilibrium 
 
 This repository includes code and instructions for replicating the figures and tables
 in the paper "Treatment Effects in Market Equilibrium", authored by Evan Munro, Stefan
 Wager and Kuang Xu.  
 
-The code requires a current Julia and R installation. The following Julia packages are required:
+The code requires a current [Julia](https://docs.julialang.org/en/v1/) and R installation. The following Julia packages are required:
 
 ```
-Revise, StatsPlots, Optim, LinearAlgebra, Random, Distributions, Suppressor, Statistics,
-FixedEffectModels, DataFrames, Plots
+StatFiles, Revise, StatsPlots, Optim, LinearAlgebra, Random, Distributions, Statistics,
+GLM, DataFrames, Plots, StatsPlots, LaTeXTabulars, LaTeXStrings, FixedEffectModels, RCall,
+Roots
 ```
 
 The following R packages are required:
 ```
-readstata13, grf, pracma
+grf
 ```
 
-Download the replication package of Gertler et. al (2012), available [here](https://www.openicpsr.org/openicpsr/project/116375/version/V1/view) and place the file `investments_data.dta` in the `data` folder.
+For the paper, figures were generated using Julia version 1.9.1 and R version 4.2.1. The replication of the tables and figures in the papers requires two steps.
 
-Reproducing the tables and figures using the below steps should take less than 3 hours.
+#### 1. Download Data
+Download the replication package of Filmer et. al (2023), available [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SGJDLC) and place the files `moduleA-all_1.dta`, `moduleD.dta`, and `balance_data_final.dta` in the `data/philippines` folder.
 
-#### 1. Reproducing Figure 1 and Table 1
+Reproducing the tables and figures using the below steps should take less than 1 hour on a standard computer.
 
-Run the following script:
+#### 2. Reproduce All Figures and Tables
+
+Set your working directory to the `code/` folder. From there, run
 ```
-julia generate_simulation_plots.jl
-```
-
-The components making up the table are printed. The figures are saved as pdfs.
-
-#### 2. Reproducing Table 2 and Figure 2
-
-To generate the data for Table 2 (printed) and some data for Figure 2, then run:
-```
-Rscript hte_analysis.R
+julia replicate.jl
 ```
 
-Then, to generate Figure 2, run the following script:
-
-```
-julia  empirical_plots.jl
-```
+The tables and figures are saved in the `exhibits/` folder.
