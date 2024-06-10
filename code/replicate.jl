@@ -23,5 +23,5 @@ Random.seed!(1)
 hte_gain(50)
 
 #Table 3
-Random.seed(1)
+Random.seed!(1)
 generate_model_estimation_table()
