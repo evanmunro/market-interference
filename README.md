@@ -20,7 +20,6 @@ The code requires a current [Julia](https://docs.julialang.org/en/v1/) and R ins
 
 The only data source used is the replication package for the Filmer et al. (2023). The replication package is available on the [Harvard Dataverse](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/SGJDLC) and is in the public domain.
 
-The citation for the data is as follows:
 Filmer, Deon; Friedman, Jed; Kandpal, Eeshani; Onishi, Junko, 2021, "Replication data for: Cash Transfers, Food Prices, and Nutrition Impacts on Ineligible Children", https://doi.org/10.7910/DVN/SGJDLC, Harvard Dataverse, V1
 
 The following files are used from this dataset:
@@ -65,7 +64,7 @@ The code was last run on a 4-core Intel-based laptop with MacOS version 13.6.7 w
 
 ### License
 
-The code is licensed under a TBD license.
+The code is licensed under CC0 1.0 Universal license. 
 
 ## Instructions to Replicators
 
