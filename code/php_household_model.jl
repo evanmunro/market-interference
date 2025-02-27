@@ -558,7 +558,7 @@ function supply_plot()
     D1 = [expected_demand(model.d, p, 1, model.μ_elig) for p in rangep]
     S = [supply(model.s, p, 0) for p in rangep]
     plot(Vector(rangep), [D0 D1 S], label=["Aggregate Demand (Control)" "Aggregate Demand (Treated)" "Aggregate Supply"], legend=:top, linewidth=2.0, xlabel="Price", ylabel="Quantity")
-    savefig("../exhibits/fig1a.pdf")
+    savefig("../exhibits/fig1a.svg")
 end
 
 function ade_plot(n, S)
@@ -573,7 +573,7 @@ function ade_plot(n, S)
 
     density(results[:, 1:2], label=["Sample Total Treatment Effect" "Sample Average Direct Effect"], linewidth=2.0, linestyle = [:solid :dash], legend=:outertop, xlabel="Treatment Effect", ylabel="Density")
     vline!([τ_truth], label= "Population Total Treatment Effect", linestyle = :dot, linecolor=:black, linewidth=2.0)
-    savefig("../exhibits/fig1b.pdf")
+    savefig("../exhibits/fig1b.svg")
 end
 
 
@@ -598,7 +598,7 @@ function hte_plot(n)
     ys = xs.*cstar
     println(cstar)
     plot!(xs, ys, label="Treatment Rule", legend=:topright, linewidth=2.0, xlims=(-1, 3), ylims =(-0.5, 1) )
-    savefig("../exhibits/fig2.pdf")
+    savefig("../exhibits/fig2.svg")
 end
 
 
