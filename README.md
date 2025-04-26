@@ -65,7 +65,7 @@ Note that as Julia releases new versions of the language and packages, and in so
 
 The code needs less than one hour to run on a standard 2024 desktop or laptop machine. The storage space needed is 25 MB - 250 MB.
 
-The code was last run on an M3 Pro with MacOS version 15.3.1 with 890GB of free space. Due to some quirks with the replication of code relying on the grf package in R across operating systems, see details [here](https://grf-labs.github.io/grf/REFERENCE.html#forests-predict-different-values-depending-on-the-platform-even-though-the-seed-is-the-same), a replicator that does not use the same operating system and chip architecture should expect minor differences in Figure 1, and Tables 1-2. Specifically, Figure 1 may have an optimal treatment rule that is slightly steeper or shallower than the figure in the publication, and the distributions of points may be slightly more or less clustered. The numbers in Table 1 and Table 2 may differ by a handful of digits in the hundredths or thousandths place. 
+The code was last run on an M3 Pro with MacOS version 15.3.1 with 890GB of free space. Due to some quirks with the grf package in R across operating systems, see details [here](https://grf-labs.github.io/grf/REFERENCE.html#forests-predict-different-values-depending-on-the-platform-even-though-the-seed-is-the-same), a replicator that does not use the same operating system and chip architecture should expect minor differences in Figure 1, and Tables 1-2, despite the fact that seeds are set. Specifically, Figure 1 may have an optimal treatment rule that is slightly steeper or shallower than the figure in the publication, and the distributions of points may be slightly more or less clustered. The numbers in Table 1 and Table 2 may differ by a handful of digits in the hundredths or thousandths place. 
 
 ### License
 
@@ -78,11 +78,11 @@ Download the replication package of Filmer et. al (2023), available [here](https
 
 #### 2. Reproduce All Figures and Tables
 
-Then, set your working directory to the `code/` folder.
+Next, set your working directory to the `code/` folder.
 
 If you do not have the required packages installed, first run 
 ``` 
-julia code/install_dependencies.jl 
+julia install_dependencies.jl 
 ``` 
 
 Once you have the required packages installed, run 
