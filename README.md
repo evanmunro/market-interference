@@ -34,22 +34,27 @@ and save these three files in the folder `data/philippines`.
 
 ### Software Requirements
 
-- Julia 1.9.1
-  - `Revise` 3.5.3
+The code was last run with the following versions. 
+
+- Julia 1.10.4 
+  - `Revise` 3.6.2
   - `StatFiles` 0.8.0
-  - `StatsPlots` 0.15.5
-  - `Optim` 1.7.6
-  - `Distributions` 0.25.95
-  - `Statistics` 1.9.0
-  - `GLM` 1.8.3
-  - `DataFrames` 1.5.0
-  - `Plots` 1.38.15
-  - `LaTexTabulars` 0.1.3
-  - `LaTeXStrings` 1.3.1
+  - `StatsPlots` 0.15.7
+  - `Optim` 1.9.4
+  - `Distributions` 0.25.112
+  - `Statistics` 1.10.0
+  - `GLM` 1.9.0
+  - `DataFrames` 1.3.6
+  - `Plots` 1.40.8
+  - `LaTexTabulars` 1.0.0
+  - `LaTeXStrings` 1.4.0
   - `FixedEffectsModels` 1.11.0
-  - `RCall` 0.13.15
-- R 4.2.1
-  - `grf` 2.2.0
+  - `RCall` 0.14.6
+  - `Roots` 2.2.5 
+- R 4.4.2
+  - `grf` 2.3.2
+
+Note that as Julia releases new versions of the language and packages, and in some cases abandons old ones, it may not always be straightforward to install exactly these versions of the packages. In that case, the replicator should install the version that is closest to the version used above, and expect minor differences in the output. 
 
 ### Controlled Randomness
 - Random seed for Julia is set before the generation of each table or figure in the file `replication.jl`
@@ -60,7 +65,7 @@ and save these three files in the folder `data/philippines`.
 
 The code needs less than one hour to run on a standard 2024 desktop or laptop machine. The storage space needed is 25 MB - 250 MB.
 
-The code was last run on a 4-core Intel-based laptop with MacOS version 13.6.7 with 47GB of free space.
+The code was last run on an M3 Pro with MacOS version 15.3.1 with 890GB of free space. Due to some quirks with the replication of code relying on the grf package in R across operating systems, see details [here](https://grf-labs.github.io/grf/REFERENCE.html#forests-predict-different-values-depending-on-the-platform-even-though-the-seed-is-the-same), a replicator that does not use the same operating system and chip architecture should expect minor differences in Figure 1, and Tables 1-2. Specifically, Figure 1 may have an optimal treatment rule that is slightly steeper or shallower than the figure in the publication, and the distributions of points may be slightly more or less clustered. The numbers in Table 1 and Table 2 may differ by a handful of digits in the hundredths or thousandths place. 
 
 ### License
 
@@ -73,7 +78,14 @@ Download the replication package of Filmer et. al (2023), available [here](https
 
 #### 2. Reproduce All Figures and Tables
 
-Set your working directory to the `code/` folder. From there, run
+Then, set your working directory to the `code/` folder.
+
+If you do not have the required packages installed, first run 
+``` 
+julia code/install_dependencies.jl 
+``` 
+
+Once you have the required packages installed, run 
 ```
 julia replicate.jl
 ```
