@@ -54,18 +54,19 @@ The code was last run with the following versions.
 - R 4.4.2
   - `grf` 2.3.2
 
-Note that as Julia releases new versions of the language and packages, and in some cases abandons old ones, it may not always be straightforward to install exactly these versions of the packages. In that case, the replicator should install the version that is closest to the version used above, and expect minor differences in the output. 
+Note that as Julia releases new versions of the language and packages, and in some cases abandons old ones, it may not always be straightforward to install exactly these versions of the packages. In that case, the replicator should install the most recent version, and expect minor differences in the output. This can be accomplished by Pkg.add("PkgName"), rather than using Pkg.add(PackageSpec(name="PkgName", version = "PkgVersion")), as currently in the optional file `install_dependencies.jl`, which is described in more detail below. 
 
 ### Controlled Randomness
 - Random seed for Julia is set before the generation of each table or figure in the file `replication.jl`
 - Random seed for the calling of R is set on line 68 in the file `hte_analysis.jl`
 
+Due to quirks with the `grf` package in R across operating systems, see details [here](https://grf-labs.github.io/grf/REFERENCE.html#forests-predict-different-values-depending-on-the-platform-even-though-the-seed-is-the-same), a replicator that does not use the same operating system and chip architecture should expect minor differences in Figure 1, and Tables 1-2, despite the fact that seeds are set. Specifically, Figure 1 may have an optimal treatment rule that is slightly steeper or shallower than the figure in the publication, and the distributions of points may be slightly more or less clustered. The numbers in Table 1 and Table 2 may differ by a handful of digits in the hundredths or thousandths place. 
 
 ### Memory, Runtime, Storage Requirements
 
 The code needs less than one hour to run on a standard 2024 desktop or laptop machine. The storage space needed is 25 MB - 250 MB.
 
-The code was last run on an M3 Pro with MacOS version 15.3.1 with 890GB of free space. Due to some quirks with the grf package in R across operating systems, see details [here](https://grf-labs.github.io/grf/REFERENCE.html#forests-predict-different-values-depending-on-the-platform-even-though-the-seed-is-the-same), a replicator that does not use the same operating system and chip architecture should expect minor differences in Figure 1, and Tables 1-2, despite the fact that seeds are set. Specifically, Figure 1 may have an optimal treatment rule that is slightly steeper or shallower than the figure in the publication, and the distributions of points may be slightly more or less clustered. The numbers in Table 1 and Table 2 may differ by a handful of digits in the hundredths or thousandths place. 
+The code was last run on an M3 Pro with MacOS version 15.3.1 with 890GB of free space. 
 
 ### License
 
@@ -80,10 +81,12 @@ Download the replication package of Filmer et. al (2023), available [here](https
 
 Next, set your working directory to the `code/` folder.
 
-If you do not have the required packages installed, first run 
+If you do not already have the required Julia packages installed, first run 
 ``` 
 julia install_dependencies.jl 
 ``` 
+
+`grf` can be installed by running `install.packages("grf")` in any R console window. 
 
 Once you have the required packages installed, run 
 ```
