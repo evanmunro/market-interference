@@ -60,7 +60,7 @@ Note that as Julia releases new versions of the language and packages, and in so
 - Random seed for Julia is set before the generation of each table or figure in the file `replication.jl`
 - Random seed for the calling of R is set on line 68 in the file `hte_analysis.jl`
 
-Due to quirks with the `grf` package in R across operating systems, see details [here](https://grf-labs.github.io/grf/REFERENCE.html#forests-predict-different-values-depending-on-the-platform-even-though-the-seed-is-the-same), a replicator that does not use the same operating system and chip architecture should expect minor differences in Figure 1, and Tables 1-2, despite the fact that seeds are set. Specifically, Figure 1 may have an optimal treatment rule that is slightly steeper or shallower than the figure in the publication, and the distributions of points may be slightly more or less clustered. The numbers in Table 1 and Table 2 may differ by a handful of digits in the hundredths or thousandths place. 
+Due to quirks with the `grf` package in R across operating systems, see details [here](https://grf-labs.github.io/grf/REFERENCE.html#forests-predict-different-values-depending-on-the-platform-even-though-the-seed-is-the-same), a replicator that does not use the same operating system and chip architecture should expect minor differences in Figure 2, and Tables 1-2, despite the fact that seeds are set. Specifically, Figure 2 may have an optimal treatment rule that is slightly steeper or shallower than the figure in the publication, and the distributions of points may be slightly more or less clustered. The numbers in Table 1 and Table 2 may differ by a handful of digits after the decimal point. 
 
 ### Memory, Runtime, Storage Requirements
 
